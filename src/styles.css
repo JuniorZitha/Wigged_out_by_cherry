@@ -1,0 +1,76 @@
+/* Global Styles for Wigged Out by Cherry */
+
+:root {
+  --primary-pink: #FFC0D3;
+  --light-pink: #FFE5ED;
+  --dark-pink: #FF91B0;
+  --text-dark: #4A4A4A;
+  --text-light: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  background-color: var(--light-pink);
+  color: var(--text-dark);
+}
+
+/* Stylish Headings - Feminine and Elegant */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 3rem;
+  font-style: italic;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-style: italic;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-pink) !important;
+  border: none !important;
+  color: var(--text-dark) !important;
+  font-weight: 500;
+  padding: 12px 30px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-pink) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 192, 211, 0.4);
+}
+
+/* Card Styles */
+.card {
+  border: none !important;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 192, 211, 0.3);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}

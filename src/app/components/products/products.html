@@ -1,0 +1,68 @@
+<div class="products-container">
+  <!-- Page Header -->
+  <section class="products-header">
+    <div class="container text-center">
+      <h1 class="page-title">Our Collection</h1>
+      <p class="page-subtitle">Discover your perfect look from our premium selection</p>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="filter-section">
+    <div class="container">
+      <div class="filter-buttons">
+        <button 
+          *ngFor="let category of categories" 
+          (click)="filterByCategory(category)"
+          [class.active]="selectedCategory === category"
+          class="filter-btn">
+          {{ category }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="products-section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6" *ngFor="let product of filteredProducts">
+          <div class="product-card">
+            <div class="product-image">
+              <img [src]="product.images[0]" [alt]="product.name" class="img-fluid">
+              <div class="product-badge" *ngIf="product.category === 'Premium'">Premium</div>
+              <div class="stock-badge" [class.in-stock]="product.inStock">
+                {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+              </div>
+            </div>
+            
+            <div class="product-info">
+              <h3 class="product-name">{{ product.name }}</h3>
+              <p class="product-details">
+                <span class="detail-item">{{ product.length }}</span>
+                <span class="detail-separator">•</span>
+                <span class="detail-item">{{ product.texture }}</span>
+              </p>
+              <p class="product-price">R{{ product.price }}</p>
+              <a [routerLink]="['/product', product.id]" class="btn btn-primary btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Products Message -->
+      <div *ngIf="filteredProducts.length === 0" class="no-products">
+        <p>No products found in this category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Order Section -->
+  <section class="custom-order-section">
+    <div class="container text-center">
+      <h2>Looking for Something Special?</h2>
+      <p>We offer custom colors and HD lace on preorder</p>
+      <a routerLink="/contact" class="btn btn-primary btn-lg">Contact Us</a>
+    </div>
+  </section>
+</div>

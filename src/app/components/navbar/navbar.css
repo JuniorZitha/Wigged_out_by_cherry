@@ -1,0 +1,135 @@
+.navbar {
+  background: linear-gradient(135deg, #FFE5ED 0%, #FFC0D3 100%);
+  box-shadow: 0 2px 15px rgba(255, 192, 211, 0.3);
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover .brand-logo {
+  transform: scale(1.05);
+}
+
+.brand-text-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #4A4A4A;
+  letter-spacing: 2px;
+}
+
+.brand-by {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  letter-spacing: 3px;
+  text-transform: lowercase;
+  margin-left: 20px;
+}
+
+.navbar-toggler {
+  border: 2px solid #FF91B0;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 145, 176, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.nav-link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #4A4A4A !important;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.5rem 1.5rem !important;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #FF91B0;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 80%;
+}
+
+.nav-link:hover {
+  color: #FF91B0 !important;
+}
+
+.nav-link.active {
+  color: #FF91B0 !important;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: rgba(255, 229, 237, 0.98);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+  }
+  
+  .nav-link {
+    padding: 0.8rem 1rem !important;
+  }
+  
+  .brand-logo {
+    height: 50px;
+  }
+  
+  .brand-text {
+    font-size: 1.5rem;
+  }
+  
+  .brand-by {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .brand-logo {
+    height: 45px;
+  }
+  
+  .brand-text {
+    font-size: 1.3rem;
+  }
+  
+  .brand-by {
+    font-size: 0.75rem;
+    margin-left: 10px;
+  }
+}

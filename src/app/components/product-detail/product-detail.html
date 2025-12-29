@@ -1,0 +1,145 @@
+<div class="product-detail-container" *ngIf="product">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-section">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
+          <li class="breadcrumb-item active">{{ product.name }}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Product Details Section -->
+  <section class="product-details-section">
+    <div class="container">
+      <div class="row">
+        <!-- Image Gallery -->
+        <div class="col-lg-6">
+          <div class="image-gallery">
+            <!-- Main Image -->
+            <div class="main-image">
+              <img [src]="product.images[currentImageIndex]" [alt]="product.name" class="img-fluid">
+              
+              <!-- Navigation Arrows -->
+              <button class="nav-arrow prev-arrow" (click)="previousImage()" *ngIf="product.images.length > 1">
+                ❮
+              </button>
+              <button class="nav-arrow next-arrow" (click)="nextImage()" *ngIf="product.images.length > 1">
+                ❯
+              </button>
+            </div>
+            
+            <!-- Thumbnail Images -->
+            <div class="thumbnail-container" *ngIf="product.images.length > 1">
+              <div 
+                *ngFor="let image of product.images; let i = index" 
+                class="thumbnail"
+                [class.active]="i === currentImageIndex"
+                (click)="selectImage(i)">
+                <img [src]="image" [alt]="product.name + ' view ' + (i + 1)" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Information -->
+        <div class="col-lg-6">
+          <div class="product-info">
+            <div class="product-badge" *ngIf="product.category === 'Premium'">Premium Quality</div>
+            
+            <h1 class="product-title">{{ product.name }}</h1>
+            
+            <div class="product-meta">
+              <span class="meta-item">
+                <strong>Length:</strong> {{ product.length }}
+              </span>
+              <span class="meta-separator">|</span>
+              <span class="meta-item">
+                <strong>Texture:</strong> {{ product.texture }}
+              </span>
+            </div>
+
+            <div class="stock-status" [class.in-stock]="product.inStock">
+              {{ product.inStock ? '✓ In Stock' : '✗ Out of Stock' }}
+            </div>
+
+            <p class="product-price">R{{ product.price }}</p>
+
+            <p class="product-description">{{ product.description }}</p>
+
+            <!-- Features -->
+            <div class="features-section">
+              <h3>Key Features</h3>
+              <ul class="features-list">
+                <li *ngFor="let feature of product.features">{{ feature }}</li>
+              </ul>
+            </div>
+
+            <!-- Colors -->
+            <div class="colors-section" *ngIf="product.colors && product.colors.length > 0">
+              <h3>Available Colors</h3>
+              <div class="colors-list">
+                <span *ngFor="let color of product.colors" class="color-badge">{{ color }}</span>
+              </div>
+            </div>
+
+            <!-- Custom Options -->
+            <div class="custom-options" *ngIf="product.customOptions && product.customOptions.length > 0">
+              <h3>Custom Options</h3>
+              <ul class="options-list">
+                <li *ngFor="let option of product.customOptions">{{ option }}</li>
+              </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <a routerLink="/contact" class="btn btn-primary btn-lg btn-block">Enquire Now</a>
+              <a routerLink="/products" class="btn btn-outline btn-lg btn-block">Back to Products</a>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-box">
+              <p><strong>📞 Call/WhatsApp:</strong> 081-443-0013</p>
+              <p><strong>📷 Instagram:</strong> @wigged_out_by_cherry</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="related-products-section" *ngIf="relatedProducts.length > 0">
+    <div class="container">
+      <h2 class="section-title">You May Also Like</h2>
+      
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6" *ngFor="let relatedProduct of relatedProducts">
+          <div class="product-card">
+            <div class="product-image">
+              <img [src]="relatedProduct.images[0]" [alt]="relatedProduct.name" class="img-fluid">
+            </div>
+            <div class="product-card-info">
+              <h3>{{ relatedProduct.name }}</h3>
+              <p>{{ relatedProduct.length }} • {{ relatedProduct.texture }}</p>
+              <p class="price">R{{ relatedProduct.price }}</p>
+              <a [routerLink]="['/product', relatedProduct.id]" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Product Not Found -->
+<div class="not-found-container" *ngIf="!product">
+  <div class="container text-center">
+    <h2>Product Not Found</h2>
+    <p>Sorry, we couldn't find the product you're looking for.</p>
+    <a routerLink="/products" class="btn btn-primary">Browse All Products</a>
+  </div>
+</div>
